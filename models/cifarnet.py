@@ -91,10 +91,10 @@ class CIFARClassifier(nn.Module):
         """Init LeNet encoder."""
         super(CIFARClassifier, self).__init__()
         self.restored = False # TODO this is a strange bug
-        self.fc2 = nn.Linear(64 * width, 10)
+        self.fc = nn.Linear(64 * width, 10)
 
     def forward(self, feat):
         """Forward the LeNet classifier."""
         out = F.dropout(F.relu(feat), training=self.training)
-        out = self.fc2(out)
+        out = self.fc(out)
         return out
