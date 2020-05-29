@@ -90,6 +90,7 @@ class CIFARClassifier(nn.Module):
     def __init__(self, width=4):
         """Init LeNet encoder."""
         super(CIFARClassifier, self).__init__()
+        self.restored = False # TODO this is a strange bug
         self.fc2 = nn.Linear(64 * width, 10)
 
     def forward(self, feat):

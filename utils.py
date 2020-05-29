@@ -63,6 +63,9 @@ def get_data_loader(name, train=True):
         return get_usps(train)
     elif name == "CIFAR10":
         return get_cifar10(train)
+    elif "CIFAR10-" in name:
+        corruption = name.split('-')[1]
+        return get_cifar10(train, corruption=corruption)
 
 
 def init_model(net, restore):
@@ -72,7 +75,15 @@ def init_model(net, restore):
 
     # restore model weights
     if restore is not None and os.path.exists(restore):
-        net.load_state_dict(torch.load(restore))
+        state_dict = torch.load(restore)['state_dict']
+        for k in list(state_dict.keys()):
+            if k.startswith('module.'):
+                state_dict[k[len("module."):]] = state_dict[k]
+            del state_dict[k]
+        net_dict = net.state_dict()
+        state_dict = {k: v for k, v in state_dict.items() if k in net_dict}
+        net_dict.update(state_dict)
+        net.load_state_dict(net_dict)
         net.restored = True
         print("Restore model from: {}".format(os.path.abspath(restore)))
 

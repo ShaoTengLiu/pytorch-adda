@@ -20,7 +20,7 @@ if __name__ == '__main__':
                              restore=params.src_encoder_restore)
     src_classifier = init_model(net=CIFARClassifier(),
                                 restore=params.src_classifier_restore)
-    tgt_encoder = init_model(net=CIFARClassifier(),
+    tgt_encoder = init_model(net=CIFAREncoder(),
                              restore=params.tgt_encoder_restore)
     critic = init_model(Discriminator(input_dims=params.d_input_dims,
                                       hidden_dims=params.d_hidden_dims,
