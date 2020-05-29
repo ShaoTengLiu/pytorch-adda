@@ -8,7 +8,7 @@ import torch.backends.cudnn as cudnn
 from torch.autograd import Variable
 
 import params
-from datasets import get_mnist, get_usps
+from datasets import get_mnist, get_usps, get_cifar10
 
 
 def make_variable(tensor, volatile=False):
@@ -61,6 +61,8 @@ def get_data_loader(name, train=True):
         return get_mnist(train)
     elif name == "USPS":
         return get_usps(train)
+    elif name == "CIFAR10":
+        return get_cifar10(train)
 
 
 def init_model(net, restore):

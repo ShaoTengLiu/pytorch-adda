@@ -7,20 +7,17 @@ dataset_std_value = 0.5
 dataset_mean = (dataset_mean_value, dataset_mean_value, dataset_mean_value)
 dataset_std = (dataset_std_value, dataset_std_value, dataset_std_value)
 batch_size = 50
-image_size = 32
+image_size = 64
 
 # params for source dataset
-src_dataset = "CIFAR10"
-# src_encoder_restore = "snapshots/ADDA-source-encoder-final.pt"
-# src_classifier_restore = "snapshots/ADDA-source-classifier-final.pt"
-src_encoder_restore = None
-src_classifier_restore = None
+src_dataset = "MNIST"
+src_encoder_restore = "snapshots/ADDA-source-encoder-final.pt"
+src_classifier_restore = "snapshots/ADDA-source-classifier-final.pt"
 src_model_trained = True
 
 # params for target dataset
-tgt_dataset = "CIFAR10"
-# tgt_encoder_restore = "snapshots/ADDA-target-encoder-final.pt"
-tgt_encoder_restore = None
+tgt_dataset = "USPS"
+tgt_encoder_restore = "snapshots/ADDA-target-encoder-final.pt"
 tgt_model_trained = True
 
 # params for setting up models

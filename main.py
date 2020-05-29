@@ -2,7 +2,7 @@
 
 import params
 from core import eval_src, eval_tgt, train_src, train_tgt
-from models import Discriminator, LeNetClassifier, LeNetEncoder
+from models import Discriminator, LeNetClassifier, LeNetEncoder, CIFARClassifier, CIFAREncoder
 from utils import get_data_loader, init_model, init_random_seed
 
 if __name__ == '__main__':
@@ -16,11 +16,11 @@ if __name__ == '__main__':
     tgt_data_loader_eval = get_data_loader(params.tgt_dataset, train=False)
 
     # load models
-    src_encoder = init_model(net=LeNetEncoder(),
+    src_encoder = init_model(net=CIFAREncoder(),
                              restore=params.src_encoder_restore)
-    src_classifier = init_model(net=LeNetClassifier(),
+    src_classifier = init_model(net=CIFARClassifier(),
                                 restore=params.src_classifier_restore)
-    tgt_encoder = init_model(net=LeNetEncoder(),
+    tgt_encoder = init_model(net=CIFARClassifier(),
                              restore=params.tgt_encoder_restore)
     critic = init_model(Discriminator(input_dims=params.d_input_dims,
                                       hidden_dims=params.d_hidden_dims,
